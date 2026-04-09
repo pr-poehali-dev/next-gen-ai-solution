@@ -17,7 +17,7 @@ export function WorkSection() {
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Где теряются
             <br />
-            <span className="text-[#c9941a]">деньги</span>
+            <span className="text-[#FFD600]">деньги</span>
           </h2>
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Реальные точки потерь</p>
         </div>
@@ -81,7 +81,7 @@ function ProjectCard({
 
   return (
     <div
-      className={`group flex items-center justify-between border-b border-foreground/10 py-4 transition-all duration-700 hover:border-[#c9941a]/30 md:py-5 ${getRevealClass()}`}
+      className={`group flex items-center justify-between border-b border-foreground/10 py-4 transition-all duration-700 hover:border-[#FFD600]/30 md:py-5 ${getRevealClass()}`}
       style={{
         transitionDelay: `${index * 120}ms`,
         marginLeft: index % 2 === 0 ? "0" : "auto",
@@ -89,7 +89,7 @@ function ProjectCard({
       }}
     >
       <div className="flex items-baseline gap-4 md:gap-8">
-        <span className="font-mono text-sm text-foreground/30 transition-colors group-hover:text-[#c9941a]/50 md:text-base">
+        <span className="font-mono text-sm text-foreground/30 transition-colors group-hover:text-[#FFD600]/50 md:text-base">
           {project.number}
         </span>
         <div>

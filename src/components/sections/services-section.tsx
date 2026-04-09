@@ -48,7 +48,7 @@ export function ServicesSection() {
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Калькулятор
             <br />
-            <span className="text-[#c9941a]">потерь</span>
+            <span className="text-[#FFD600]">потерь</span>
           </h2>
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Посчитайте свои деньги прямо сейчас</p>
         </div>
@@ -73,7 +73,7 @@ export function ServicesSection() {
                 step={50}
                 value={portfolio}
                 onChange={(e) => setPortfolio(Number(e.target.value))}
-                className="w-full h-1 bg-foreground/20 rounded-full appearance-none cursor-pointer accent-[#c9941a]"
+                className="w-full h-1 bg-foreground/20 rounded-full appearance-none cursor-pointer accent-[#FFD600]"
               />
               <div className="flex justify-between mt-1">
                 <span className="font-mono text-[10px] text-foreground/30">50 млн</span>
@@ -93,7 +93,7 @@ export function ServicesSection() {
                 step={1}
                 value={recovery}
                 onChange={(e) => setRecovery(Number(e.target.value))}
-                className="w-full h-1 bg-foreground/20 rounded-full appearance-none cursor-pointer accent-[#c9941a]"
+                className="w-full h-1 bg-foreground/20 rounded-full appearance-none cursor-pointer accent-[#FFD600]"
               />
               <div className="flex justify-between mt-1">
                 <span className="font-mono text-[10px] text-foreground/30">3%</span>
@@ -111,7 +111,7 @@ export function ServicesSection() {
                   "Показывает точки роста в реальном времени",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <Icon name="Check" size={12} className="text-[#c9941a] mt-0.5 shrink-0" />
+                    <Icon name="Check" size={12} className="text-[#FFD600] mt-0.5 shrink-0" />
                     <span className="font-mono text-xs text-foreground/70">{item}</span>
                   </li>
                 ))}

@@ -203,7 +203,7 @@ export default function Index() {
         <Shader className="h-full w-full">
           <Swirl
             colorA="#0a0a0a"
-            colorB="#c9941a"
+            colorB="#FFD600"
             speed={0.4}
             detail={0.6}
             blend={60}
@@ -218,8 +218,8 @@ export default function Index() {
             baseColor="#0d0d0d"
             upColor="#0d0d0d"
             downColor="#1a1a1a"
-            leftColor="#c9941a"
-            rightColor="#b8821a"
+            leftColor="#FFD600"
+            rightColor="#e6c100"
             intensity={0.85}
             radius={1.5}
             momentum={20}
@@ -237,12 +237,13 @@ export default function Index() {
       >
         <button
           onClick={() => scrollToSection(0)}
-          className="flex items-center gap-2 transition-transform hover:scale-105"
+          className="flex items-center gap-3 transition-transform hover:scale-105"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#c9941a]/20 backdrop-blur-md border border-[#c9941a]/30 transition-all duration-300 hover:scale-110 hover:bg-[#c9941a]/30">
-            <span className="font-sans text-sm font-bold text-[#c9941a]">ОПЦ</span>
-          </div>
-          <span className="font-sans text-lg font-semibold tracking-tight text-foreground">OnePlaceCollection</span>
+          <img
+            src="https://cdn.poehali.dev/projects/a4c6c3a9-5898-4bcd-9cf1-d79afacd9921/bucket/ae31cd01-2f18-4677-bbe2-03d4a1cb3389.png"
+            alt="ВБ Трейд"
+            className="h-9 w-auto object-contain"
+          />
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -251,12 +252,12 @@ export default function Index() {
               key={item}
               onClick={() => scrollToSection(index)}
               className={`group relative font-sans text-sm font-medium transition-colors ${
-                currentSection === index ? "text-[#c9941a]" : "text-foreground/80 hover:text-foreground"
+                currentSection === index ? "text-[#FFD600]" : "text-foreground/80 hover:text-foreground"
               }`}
             >
               {item}
               <span
-                className={`absolute -bottom-1 left-0 h-px bg-[#c9941a] transition-all duration-300 ${
+                className={`absolute -bottom-1 left-0 h-px bg-[#FFD600] transition-all duration-300 ${
                   currentSection === index ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
@@ -283,13 +284,13 @@ export default function Index() {
             <div className="grid gap-12 md:grid-cols-2 md:gap-16 items-center">
               {/* Left */}
               <div>
-                <div className="mb-5 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-[#c9941a]/30 bg-[#c9941a]/10 px-4 py-1.5 backdrop-blur-md duration-700">
-                  <p className="font-mono text-xs text-[#c9941a]">Fintech SaaS · Управление портфелем</p>
+                <div className="mb-5 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-[#FFD600]/30 bg-[#FFD600]/10 px-4 py-1.5 backdrop-blur-md duration-700">
+                  <p className="font-mono text-xs text-[#FFD600]">Fintech SaaS · Управление портфелем</p>
                 </div>
                 <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-5xl font-light leading-[1.05] tracking-tight text-foreground duration-1000 md:text-6xl lg:text-7xl">
                   Ваш портфель
                   <br />
-                  <span className="text-[#c9941a]">теряет деньги.</span>
+                  <span className="text-[#FFD600]">теряет деньги.</span>
                   <br />
                   <span className="text-foreground/50 text-4xl md:text-5xl lg:text-6xl">Каждый день.</span>
                 </h1>
@@ -327,12 +328,12 @@ export default function Index() {
                     <p className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest">Сегментация портфеля</p>
                     <div className="flex gap-1 h-3 rounded-full overflow-hidden">
                       <div className="bg-green-500/80 transition-all duration-1000" style={{ width: "18%" }} />
-                      <div className="bg-[#c9941a]/80 transition-all duration-1000" style={{ width: "31%" }} />
+                      <div className="bg-[#FFD600]/80 transition-all duration-1000" style={{ width: "31%" }} />
                       <div className="bg-red-500/60 transition-all duration-1000" style={{ width: "51%" }} />
                     </div>
                     <div className="flex gap-4">
                       <span className="font-mono text-xs text-green-400">A — 18%</span>
-                      <span className="font-mono text-xs text-[#c9941a]">B — 31%</span>
+                      <span className="font-mono text-xs text-[#FFD600]">B — 31%</span>
                       <span className="font-mono text-xs text-red-400">C — 51%</span>
                     </div>
                   </div>
@@ -360,7 +361,7 @@ export default function Index() {
                     <p className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest">Распределение ресурсов</p>
                     {[
                       { label: "Сегмент A (приоритет)", value: 72, color: "bg-green-500/70" },
-                      { label: "Сегмент B (резерв)", value: 45, color: "bg-[#c9941a]/70" },
+                      { label: "Сегмент B (резерв)", value: 45, color: "bg-[#FFD600]/70" },
                       { label: "Сегмент C (аутсорс)", value: 18, color: "bg-red-500/50" },
                     ].map((item) => (
                       <div key={item.label} className="flex items-center gap-2">
@@ -381,7 +382,7 @@ export default function Index() {
             <div className="flex items-center gap-2">
               <p className="font-mono text-xs text-foreground/80">Листайте вправо</p>
               <div className="flex h-6 w-12 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15 backdrop-blur-md">
-                <div className="h-2 w-2 animate-pulse rounded-full bg-[#c9941a]" />
+                <div className="h-2 w-2 animate-pulse rounded-full bg-[#FFD600]" />
               </div>
             </div>
           </div>

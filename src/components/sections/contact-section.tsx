@@ -36,7 +36,7 @@ export function ContactSection() {
               <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-6xl lg:text-7xl">
                 Узнайте,
                 <br />
-                <span className="text-[#c9941a]">сколько</span>
+                <span className="text-[#FFD600]">сколько</span>
                 <br />
                 вы теряете
               </h2>
@@ -67,8 +67,8 @@ export function ContactSection() {
                   "Рекомендации по сегментации",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-[#c9941a]/20 border border-[#c9941a]/40 flex items-center justify-center shrink-0">
-                      <Icon name="Check" size={10} className="text-[#c9941a]" />
+                    <div className="h-5 w-5 rounded-full bg-[#FFD600]/20 border border-[#FFD600]/40 flex items-center justify-center shrink-0">
+                      <Icon name="Check" size={10} className="text-[#FFD600]" />
                     </div>
                     <span className="font-mono text-sm text-foreground/70">{item}</span>
                   </div>
@@ -85,7 +85,7 @@ export function ContactSection() {
                   <a
                     key={social}
                     href="#"
-                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-[#c9941a]/60 hover:text-[#c9941a]/90"
+                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-[#FFD600]/60 hover:text-[#FFD600]/90"
                   >
                     {social}
                   </a>
@@ -115,7 +115,7 @@ export function ContactSection() {
                     value={formData[field.key as keyof typeof formData]}
                     onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
                     required={field.key === "name" || field.key === "phone"}
-                    className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-[#c9941a]/60 focus:outline-none md:py-2 md:text-base transition-colors"
+                    className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-[#FFD600]/60 focus:outline-none md:py-2 md:text-base transition-colors"
                     placeholder={field.placeholder}
                   />
                 </div>
@@ -135,7 +135,7 @@ export function ContactSection() {
                   {isSubmitting ? "Отправляем..." : "Получить бесплатный аудит"}
                 </MagneticButton>
                 {submitSuccess && (
-                  <p className="mt-3 text-center font-mono text-sm text-[#c9941a]">Заявка принята! Свяжемся в течение часа.</p>
+                  <p className="mt-3 text-center font-mono text-sm text-[#FFD600]">Заявка принята! Свяжемся в течение часа.</p>
                 )}
                 <p className="mt-2 text-center font-mono text-[10px] text-foreground/30">Без спама и обязательств</p>
               </div>

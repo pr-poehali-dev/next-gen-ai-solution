@@ -22,7 +22,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
                 <br />
                 которая
                 <br />
-                <span className="text-[#c9941a]">работает</span>
+                <span className="text-[#FFD600]">работает</span>
               </h2>
             </div>
 
@@ -57,14 +57,14 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               return (
                 <div
                   key={i}
-                  className={`flex items-baseline gap-4 border-l-2 border-[#c9941a]/40 pl-4 transition-all duration-700 md:gap-8 md:pl-8 ${getRevealClass()}`}
+                  className={`flex items-baseline gap-4 border-l-2 border-[#FFD600]/40 pl-4 transition-all duration-700 md:gap-8 md:pl-8 ${getRevealClass()}`}
                   style={{
                     transitionDelay: `${300 + i * 150}ms`,
                     marginLeft: i % 2 === 0 ? "0" : "auto",
                     maxWidth: i % 2 === 0 ? "100%" : "85%",
                   }}
                 >
-                  <div className="text-3xl font-light text-[#c9941a] md:text-5xl lg:text-6xl">{stat.value}</div>
+                  <div className="text-3xl font-light text-[#FFD600] md:text-5xl lg:text-6xl">{stat.value}</div>
                   <div>
                     <div className="font-sans text-base font-light text-foreground md:text-xl">{stat.label}</div>
                     <div className="font-mono text-xs text-foreground/60">{stat.sublabel}</div>
