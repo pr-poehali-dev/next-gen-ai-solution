@@ -26,120 +26,81 @@ export function ContactSection() {
       className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:gap-16 lg:gap-24">
-          <div className="flex flex-col justify-center">
-            <div
-              className={`mb-6 transition-all duration-700 md:mb-12 ${
-                isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
-              }`}
-            >
-              <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-6xl lg:text-7xl">
-                Узнайте,
-                <br />
-                <span className="text-[#FFD600]">сколько</span>
-                <br />
-                вы теряете
-              </h2>
-              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Бесплатный аудит портфеля</p>
+        <div className="grid gap-8 md:grid-cols-[1fr_1fr] md:gap-16">
+
+          {/* Left */}
+          <div className={`flex flex-col justify-center transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`}>
+            <p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-3">/ Бесплатный аудит</p>
+            <h2 className="mb-4 font-sans text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+              Узнайте,
+              <br />
+              <span className="relative inline-block">
+                сколько теряете
+                <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-[#FFD600]" />
+              </span>
+            </h2>
+            <p className="text-sm text-foreground/55 leading-relaxed max-w-sm mb-6 md:text-base">
+              За 30 минут покажем реальные точки потерь в вашем портфеле — без обязательств и воды.
+            </p>
+
+            <div className="space-y-3 mb-8">
+              {[
+                "Анализ структуры портфеля",
+                "Оценка текущих потерь в рублях",
+                "Рекомендации по сегментации",
+              ].map((item) => (
+                <div key={item} className="flex items-center gap-3">
+                  <div className="h-5 w-5 rounded-full bg-[#FFD600]/20 border border-[#FFD600]/30 flex items-center justify-center shrink-0">
+                    <Icon name="Check" size={10} className="text-foreground/70" />
+                  </div>
+                  <span className="text-sm text-foreground/60">{item}</span>
+                </div>
+              ))}
             </div>
 
-            <div className="space-y-4 md:space-y-6">
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "-translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "200ms" }}
-              >
-                <p className="text-base text-foreground/80 md:text-lg max-w-sm">
-                  За 30 минут мы покажем реальные точки потерь в вашем портфеле — без обязательств.
-                </p>
-              </div>
-
-              <div
-                className={`space-y-3 transition-all duration-700 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "350ms" }}
-              >
-                {[
-                  "Анализ структуры портфеля",
-                  "Оценка текущих потерь",
-                  "Рекомендации по сегментации",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <div className="h-5 w-5 rounded-full bg-[#FFD600]/20 border border-[#FFD600]/40 flex items-center justify-center shrink-0">
-                      <Icon name="Check" size={10} className="text-[#FFD600]" />
-                    </div>
-                    <span className="font-mono text-sm text-foreground/70">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                className={`flex gap-4 pt-2 transition-all duration-700 md:pt-4 ${
-                  isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
-                }`}
-                style={{ transitionDelay: "500ms" }}
-              >
-                {["Telegram", "LinkedIn"].map((social) => (
-                  <a
-                    key={social}
-                    href="#"
-                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-[#FFD600]/60 hover:text-[#FFD600]/90"
-                  >
-                    {social}
-                  </a>
-                ))}
-              </div>
+            <div className="flex gap-4">
+              {["Telegram", "LinkedIn"].map((social) => (
+                <a key={social} href="#" className="font-mono text-xs text-foreground/40 border-b border-transparent hover:border-foreground/30 hover:text-foreground/60 transition-all">
+                  {social}
+                </a>
+              ))}
             </div>
           </div>
 
-          <div className="flex flex-col justify-center">
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
-              {[
-                { key: "name", label: "Имя и фамилия", placeholder: "Иван Петров", type: "text", delay: "200ms" },
-                { key: "company", label: "Компания", placeholder: "Банк / МФО / Агентство", type: "text", delay: "300ms" },
-                { key: "phone", label: "Телефон", placeholder: "+7 (900) 000-00-00", type: "tel", delay: "400ms" },
-                { key: "portfolioSize", label: "Размер портфеля (млн ₽)", placeholder: "Например: 500", type: "text", delay: "500ms" },
-              ].map((field) => (
-                <div
-                  key={field.key}
-                  className={`transition-all duration-700 ${
-                    isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                  }`}
-                  style={{ transitionDelay: field.delay }}
-                >
-                  <label className="mb-1.5 block font-mono text-xs text-foreground/60 md:mb-2">{field.label}</label>
-                  <input
-                    type={field.type}
-                    value={formData[field.key as keyof typeof formData]}
-                    onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
-                    required={field.key === "name" || field.key === "phone"}
-                    className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-[#FFD600]/60 focus:outline-none md:py-2 md:text-base transition-colors"
-                    placeholder={field.placeholder}
-                  />
-                </div>
-              ))}
+          {/* Right — Form */}
+          <div className={`flex flex-col justify-center transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"}`} style={{ transitionDelay: "150ms" }}>
+            <div className="rounded-2xl border border-black/8 bg-white shadow-sm p-6 md:p-8">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {[
+                  { key: "name", label: "Имя и фамилия", placeholder: "Иван Петров", type: "text" },
+                  { key: "company", label: "Компания", placeholder: "Банк / МФО / Агентство", type: "text" },
+                  { key: "phone", label: "Телефон", placeholder: "+7 (900) 000-00-00", type: "tel" },
+                  { key: "portfolioSize", label: "Размер портфеля (млн ₽)", placeholder: "Например: 500", type: "text" },
+                ].map((field, i) => (
+                  <div key={field.key} className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: `${200 + i * 80}ms` }}>
+                    <label className="mb-1.5 block font-mono text-xs text-foreground/45">{field.label}</label>
+                    <input
+                      type={field.type}
+                      value={formData[field.key as keyof typeof formData]}
+                      onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
+                      required={field.key === "name" || field.key === "phone"}
+                      className="w-full rounded-xl border border-black/10 bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-[#FFD600]/50 focus:outline-none focus:ring-2 focus:ring-[#FFD600]/20 transition-all"
+                      placeholder={field.placeholder}
+                    />
+                  </div>
+                ))}
 
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-                }`}
-                style={{ transitionDelay: "600ms" }}
-              >
-                <MagneticButton
-                  variant="primary"
-                  size="lg"
-                  className="w-full disabled:opacity-50"
-                >
-                  {isSubmitting ? "Отправляем..." : "Получить бесплатный аудит"}
-                </MagneticButton>
-                {submitSuccess && (
-                  <p className="mt-3 text-center font-mono text-sm text-[#FFD600]">Заявка принята! Свяжемся в течение часа.</p>
-                )}
-                <p className="mt-2 text-center font-mono text-[10px] text-foreground/30">Без спама и обязательств</p>
-              </div>
-            </form>
+                <div className={`pt-1 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "550ms" }}>
+                  <MagneticButton variant="primary" size="lg" className="w-full">
+                    {isSubmitting ? "Отправляем..." : "Получить бесплатный аудит"}
+                  </MagneticButton>
+                  {submitSuccess && (
+                    <p className="mt-3 text-center font-mono text-sm text-emerald-600">Заявка принята! Свяжемся в течение часа.</p>
+                  )}
+                  <p className="mt-2 text-center font-mono text-[10px] text-foreground/30">Без спама и обязательств</p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -4,40 +4,33 @@
 
 @layer base {
   :root {
-    /* Dark theme by default - matching origin */
-    --background: 0 0% 7%;
-    --foreground: 0 0% 96%;
+    --background: 0 0% 99%;
+    --foreground: 0 0% 8%;
 
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 96%;
+    --primary: 51 100% 50%;
+    --primary-foreground: 0 0% 8%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 96%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
     --accent: 51 100% 50%;
     --accent-foreground: 0 0% 8%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 96%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 217 91% 60%;
-
-    --chart-1: 217 91% 60%;
-    --chart-2: 35 82% 55%;
-    --chart-3: 270 60% 50%;
-    --chart-4: 25 80% 50%;
-    --chart-5: 200 70% 45%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 51 100% 50%;
 
     --radius: 0.75rem;
 
@@ -48,46 +41,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 96%;
-
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 96%;
-
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 96%;
-
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 96%;
-
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 96%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 40%;
-
-    --accent: 35 82% 55%;
-    --accent-foreground: 0 0% 96%;
-
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 96%;
-
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 217 91% 60%;
-
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 51 100% 50%;
   }
 }
 
@@ -99,6 +53,9 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 
   [data-scroll-container] {
@@ -121,7 +78,6 @@
   }
 }
 
-/* Animation utilities for tailwindcss-animate compatibility */
 @layer utilities {
   .animate-in {
     animation-duration: 150ms;

@@ -12,81 +12,66 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
           <div>
-            <div
-              className={`mb-6 transition-all duration-700 md:mb-12 ${
-                isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
-              }`}
-            >
-              <h2 className="mb-3 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
-                Платформа,
+            <div className={`mb-6 transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0"}`}>
+              <p className="font-mono text-xs text-foreground/40 uppercase tracking-widest mb-3">/ О платформе</p>
+              <h2 className="font-sans text-4xl font-semibold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+                Аналитика,
                 <br />
                 которая
                 <br />
-                <span className="text-[#FFD600]">работает</span>
+                <span className="relative inline-block">
+                  работает
+                  <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-[#FFD600]" />
+                </span>
               </h2>
             </div>
 
             <div
-              className={`space-y-3 transition-all duration-700 md:space-y-4 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-              }`}
+              className={`space-y-4 transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
               style={{ transitionDelay: "200ms" }}
             >
-              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-                OnePlaceCollection — это не коллекторская услуга и не автоматизация звонков. Это аналитическая система, которая показывает где и почему теряется эффективность.
+              <p className="max-w-md text-sm leading-relaxed text-foreground/60 md:text-base">
+                OnePlaceCollection — это не коллекторская услуга. Это аналитическая система, которая показывает, где и почему теряется эффективность.
               </p>
-              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
-                Мы работаем с банками, МФО и коллекторскими агентствами — там, где управление портфелем напрямую влияет на выручку.
+              <p className="max-w-md text-sm leading-relaxed text-foreground/60 md:text-base">
+                Работаем с банками, МФО и коллекторскими агентствами — там, где управление портфелем напрямую влияет на выручку.
               </p>
+            </div>
+
+            <div
+              className={`mt-8 flex flex-wrap gap-3 transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+              style={{ transitionDelay: "400ms" }}
+            >
+              <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
+                Проверить портфель
+              </MagneticButton>
+              <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(4)}>
+                Получить аудит
+              </MagneticButton>
             </div>
           </div>
 
-          <div className="flex flex-col justify-center space-y-6 md:space-y-10">
+          <div className="flex flex-col justify-center space-y-4 md:space-y-6">
             {[
-              { value: "3–7×", label: "Рост эффективности", sublabel: "в первые 90 дней", direction: "right" },
-              { value: "₽млрд", label: "Портфелей под управлением", sublabel: "банки, МФО, коллекторы", direction: "left" },
-              { value: "94%", label: "Клиентов продлевают", sublabel: "подписку после первого года", direction: "right" },
-            ].map((stat, i) => {
-              const getRevealClass = () => {
-                if (!isVisible) {
-                  return stat.direction === "left" ? "-translate-x-16 opacity-0" : "translate-x-16 opacity-0"
-                }
-                return "translate-x-0 opacity-100"
-              }
-
-              return (
-                <div
-                  key={i}
-                  className={`flex items-baseline gap-4 border-l-2 border-[#FFD600]/40 pl-4 transition-all duration-700 md:gap-8 md:pl-8 ${getRevealClass()}`}
-                  style={{
-                    transitionDelay: `${300 + i * 150}ms`,
-                    marginLeft: i % 2 === 0 ? "0" : "auto",
-                    maxWidth: i % 2 === 0 ? "100%" : "85%",
-                  }}
-                >
-                  <div className="text-3xl font-light text-[#FFD600] md:text-5xl lg:text-6xl">{stat.value}</div>
-                  <div>
-                    <div className="font-sans text-base font-light text-foreground md:text-xl">{stat.label}</div>
-                    <div className="font-mono text-xs text-foreground/60">{stat.sublabel}</div>
-                  </div>
+              { value: "3–7×", label: "Рост эффективности", sub: "в первые 90 дней работы" },
+              { value: "₽млрд+", label: "Портфелей под управлением", sub: "банки, МФО, коллекторы" },
+              { value: "94%", label: "Клиентов продлевают", sub: "подписку после первого года" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                className={`flex items-center gap-5 p-5 rounded-2xl border border-black/6 bg-white shadow-sm transition-all duration-700 ${
+                  isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
+                }`}
+                style={{ transitionDelay: `${300 + i * 120}ms` }}
+              >
+                <div className="text-3xl font-semibold text-foreground md:text-4xl shrink-0 w-24">{stat.value}</div>
+                <div className="border-l border-black/8 pl-5">
+                  <div className="font-sans text-sm font-medium text-foreground">{stat.label}</div>
+                  <div className="font-mono text-xs text-foreground/40 mt-0.5">{stat.sub}</div>
                 </div>
-              )
-            })}
+              </div>
+            ))}
           </div>
-        </div>
-
-        <div
-          className={`mt-8 flex flex-wrap gap-3 transition-all duration-700 md:mt-16 md:gap-4 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
-          }`}
-          style={{ transitionDelay: "750ms" }}
-        >
-          <MagneticButton size="lg" variant="primary" onClick={() => scrollToSection?.(4)}>
-            Проверить портфель
-          </MagneticButton>
-          <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection?.(4)}>
-            Получить аудит
-          </MagneticButton>
         </div>
       </div>
     </section>
