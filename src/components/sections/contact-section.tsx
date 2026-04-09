@@ -1,32 +1,22 @@
-import { Mail, MapPin } from "lucide-react"
 import { useReveal } from "@/hooks/use-reveal"
 import { useState, type FormEvent } from "react"
 import { MagneticButton } from "@/components/magnetic-button"
+import Icon from "@/components/ui/icon"
 
 export function ContactSection() {
   const { ref, isVisible } = useReveal(0.3)
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
+  const [formData, setFormData] = useState({ name: "", company: "", phone: "", portfolioSize: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
-      return
-    }
-
+    if (!formData.name || !formData.phone) return
     setIsSubmitting(true)
-
-    // Simulate form submission (replace with actual API call later)
     await new Promise((resolve) => setTimeout(resolve, 1500))
-
     setIsSubmitting(false)
     setSubmitSuccess(true)
-    setFormData({ name: "", email: "", message: "" })
-
-    // Reset success message after 5 seconds
+    setFormData({ name: "", company: "", phone: "", portfolioSize: "" })
     setTimeout(() => setSubmitSuccess(false), 5000)
   }
 
@@ -43,55 +33,59 @@ export function ContactSection() {
                 isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
               }`}
             >
-              <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-7xl lg:text-8xl">
-                Давайте
+              <h2 className="mb-2 font-sans text-4xl font-light leading-[1.05] tracking-tight text-foreground md:mb-3 md:text-6xl lg:text-7xl">
+                Узнайте,
                 <br />
-                поговорим
+                <span className="text-[#c9941a]">сколько</span>
+                <br />
+                вы теряете
               </h2>
-              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Свяжитесь с нами</p>
+              <p className="font-mono text-xs text-foreground/60 md:text-base">/ Бесплатный аудит портфеля</p>
             </div>
 
-            <div className="space-y-4 md:space-y-8">
-              <a
-                href="mailto:info@flowrise.dev"
-                className={`group block transition-all duration-700 ${
+            <div className="space-y-4 md:space-y-6">
+              <div
+                className={`transition-all duration-700 ${
                   isVisible ? "translate-x-0 opacity-100" : "-translate-x-16 opacity-0"
                 }`}
                 style={{ transitionDelay: "200ms" }}
               >
-                <div className="mb-1 flex items-center gap-2">
-                  <Mail className="h-3 w-3 text-foreground/60" />
-                  <span className="font-mono text-xs text-foreground/60">Email</span>
-                </div>
-                <p className="text-base text-foreground transition-colors group-hover:text-foreground/70 md:text-2xl">
-                  info@flowrise.dev
+                <p className="text-base text-foreground/80 md:text-lg max-w-sm">
+                  За 30 минут мы покажем реальные точки потерь в вашем портфеле — без обязательств.
                 </p>
-              </a>
+              </div>
 
               <div
-                className={`transition-all duration-700 ${
+                className={`space-y-3 transition-all duration-700 ${
                   isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
                 }`}
                 style={{ transitionDelay: "350ms" }}
               >
-                <div className="mb-1 flex items-center gap-2">
-                  <MapPin className="h-3 w-3 text-foreground/60" />
-                  <span className="font-mono text-xs text-foreground/60">Локация</span>
-                </div>
-                <p className="text-base text-foreground md:text-2xl">Москва, Россия</p>
+                {[
+                  "Анализ структуры портфеля",
+                  "Оценка текущих потерь",
+                  "Рекомендации по сегментации",
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <div className="h-5 w-5 rounded-full bg-[#c9941a]/20 border border-[#c9941a]/40 flex items-center justify-center shrink-0">
+                      <Icon name="Check" size={10} className="text-[#c9941a]" />
+                    </div>
+                    <span className="font-mono text-sm text-foreground/70">{item}</span>
+                  </div>
+                ))}
               </div>
 
               <div
-                className={`flex gap-2 pt-2 transition-all duration-700 md:pt-4 ${
+                className={`flex gap-4 pt-2 transition-all duration-700 md:pt-4 ${
                   isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
                 }`}
                 style={{ transitionDelay: "500ms" }}
               >
-                {["Telegram", "VK", "LinkedIn", "GitHub"].map((social) => (
+                {["Telegram", "LinkedIn"].map((social) => (
                   <a
                     key={social}
                     href="#"
-                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-foreground/60 hover:text-foreground/90"
+                    className="border-b border-transparent font-mono text-xs text-foreground/60 transition-all hover:border-[#c9941a]/60 hover:text-[#c9941a]/90"
                   >
                     {social}
                   </a>
@@ -100,76 +94,50 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right side - Minimal form */}
           <div className="flex flex-col justify-center">
-            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "200ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Имя</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="Ваше имя"
-                />
-              </div>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "350ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Email</label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="your@email.com"
-                />
-              </div>
-
-              <div
-                className={`transition-all duration-700 ${
-                  isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
-                }`}
-                style={{ transitionDelay: "500ms" }}
-              >
-                <label className="mb-1 block font-mono text-xs text-foreground/60 md:mb-2">Сообщение</label>
-                <textarea
-                  rows={3}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-foreground/50 focus:outline-none md:py-2 md:text-base"
-                  placeholder="Расскажите о вашем проекте..."
-                />
-              </div>
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
+              {[
+                { key: "name", label: "Имя и фамилия", placeholder: "Иван Петров", type: "text", delay: "200ms" },
+                { key: "company", label: "Компания", placeholder: "Банк / МФО / Агентство", type: "text", delay: "300ms" },
+                { key: "phone", label: "Телефон", placeholder: "+7 (900) 000-00-00", type: "tel", delay: "400ms" },
+                { key: "portfolioSize", label: "Размер портфеля (млн ₽)", placeholder: "Например: 500", type: "text", delay: "500ms" },
+              ].map((field) => (
+                <div
+                  key={field.key}
+                  className={`transition-all duration-700 ${
+                    isVisible ? "translate-x-0 opacity-100" : "translate-x-16 opacity-0"
+                  }`}
+                  style={{ transitionDelay: field.delay }}
+                >
+                  <label className="mb-1.5 block font-mono text-xs text-foreground/60 md:mb-2">{field.label}</label>
+                  <input
+                    type={field.type}
+                    value={formData[field.key as keyof typeof formData]}
+                    onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
+                    required={field.key === "name" || field.key === "phone"}
+                    className="w-full border-b border-foreground/30 bg-transparent py-1.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-[#c9941a]/60 focus:outline-none md:py-2 md:text-base transition-colors"
+                    placeholder={field.placeholder}
+                  />
+                </div>
+              ))}
 
               <div
                 className={`transition-all duration-700 ${
                   isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
                 }`}
-                style={{ transitionDelay: "650ms" }}
+                style={{ transitionDelay: "600ms" }}
               >
                 <MagneticButton
                   variant="primary"
                   size="lg"
                   className="w-full disabled:opacity-50"
                 >
-                  {isSubmitting ? "Отправка..." : "Отправить"}
+                  {isSubmitting ? "Отправляем..." : "Получить бесплатный аудит"}
                 </MagneticButton>
                 {submitSuccess && (
-                  <p className="mt-3 text-center font-mono text-sm text-foreground/80">Сообщение отправлено!</p>
+                  <p className="mt-3 text-center font-mono text-sm text-[#c9941a]">Заявка принята! Свяжемся в течение часа.</p>
                 )}
+                <p className="mt-2 text-center font-mono text-[10px] text-foreground/30">Без спама и обязательств</p>
               </div>
             </form>
           </div>

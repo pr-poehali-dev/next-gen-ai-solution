@@ -7,6 +7,7 @@ import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
+import Icon from "@/components/ui/icon"
 
 export default function Index() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -16,6 +17,8 @@ export default function Index() {
   const touchStartX = useRef(0)
   const shaderContainerRef = useRef<HTMLDivElement>(null)
   const scrollThrottleRef = useRef<number>()
+  const [lossCount, setLossCount] = useState(0)
+  const [growthCount, setGrowthCount] = useState(0)
 
   useEffect(() => {
     const checkShaderReady = () => {
@@ -46,6 +49,23 @@ export default function Index() {
       clearTimeout(fallbackTimer)
     }
   }, [])
+
+  useEffect(() => {
+    if (!isLoaded) return
+    const duration = 2000
+    const steps = 60
+    const lossTarget = 34
+    const growthTarget = 127
+    let step = 0
+    const timer = setInterval(() => {
+      step++
+      const progress = step / steps
+      setLossCount(Math.round(lossTarget * progress))
+      setGrowthCount(Math.round(growthTarget * progress))
+      if (step >= steps) clearInterval(timer)
+    }, duration / steps)
+    return () => clearInterval(timer)
+  }, [isLoaded])
 
   const scrollToSection = (index: number) => {
     if (scrollContainerRef.current) {
@@ -182,32 +202,32 @@ export default function Index() {
       >
         <Shader className="h-full w-full">
           <Swirl
-            colorA="#1275d8"
-            colorB="#e19136"
-            speed={0.8}
-            detail={0.8}
-            blend={50}
-            coarseX={40}
-            coarseY={40}
-            mediumX={40}
-            mediumY={40}
-            fineX={40}
-            fineY={40}
+            colorA="#0a0a0a"
+            colorB="#c9941a"
+            speed={0.4}
+            detail={0.6}
+            blend={60}
+            coarseX={30}
+            coarseY={30}
+            mediumX={30}
+            mediumY={30}
+            fineX={20}
+            fineY={20}
           />
           <ChromaFlow
-            baseColor="#0066ff"
-            upColor="#0066ff"
-            downColor="#d1d1d1"
-            leftColor="#e19136"
-            rightColor="#e19136"
-            intensity={0.9}
-            radius={1.8}
-            momentum={25}
+            baseColor="#0d0d0d"
+            upColor="#0d0d0d"
+            downColor="#1a1a1a"
+            leftColor="#c9941a"
+            rightColor="#b8821a"
+            intensity={0.85}
+            radius={1.5}
+            momentum={20}
             maskType="alpha"
-            opacity={0.97}
+            opacity={0.96}
           />
         </Shader>
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       <nav
@@ -219,24 +239,24 @@ export default function Index() {
           onClick={() => scrollToSection(0)}
           className="flex items-center gap-2 transition-transform hover:scale-105"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground/15 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-foreground/25">
-            <span className="font-sans text-xl font-bold text-foreground">F</span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#c9941a]/20 backdrop-blur-md border border-[#c9941a]/30 transition-all duration-300 hover:scale-110 hover:bg-[#c9941a]/30">
+            <span className="font-sans text-sm font-bold text-[#c9941a]">ОПЦ</span>
           </div>
-          <span className="font-sans text-xl font-semibold tracking-tight text-foreground">Flowrise</span>
+          <span className="font-sans text-lg font-semibold tracking-tight text-foreground">OnePlaceCollection</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["Главная", "Работы", "Услуги", "О нас", "Контакты"].map((item, index) => (
+          {["Главная", "Проблема", "Продукт", "О нас", "Контакты"].map((item, index) => (
             <button
               key={item}
               onClick={() => scrollToSection(index)}
               className={`group relative font-sans text-sm font-medium transition-colors ${
-                currentSection === index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
+                currentSection === index ? "text-[#c9941a]" : "text-foreground/80 hover:text-foreground"
               }`}
             >
               {item}
               <span
-                className={`absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300 ${
+                className={`absolute -bottom-1 left-0 h-px bg-[#c9941a] transition-all duration-300 ${
                   currentSection === index ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
@@ -245,7 +265,7 @@ export default function Index() {
         </div>
 
         <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
-          Начать
+          Получить аудит
         </MagneticButton>
       </nav>
 
@@ -258,32 +278,102 @@ export default function Index() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {/* Hero Section */}
-        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-16 pt-24 md:px-12 md:pb-24">
-          <div className="max-w-3xl">
-            <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
-              <p className="font-mono text-xs text-foreground/90">Современные технологии</p>
-            </div>
-            <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-6xl font-light leading-[1.1] tracking-tight text-foreground duration-1000 md:text-7xl lg:text-8xl">
-              <span className="text-balance">
-                Цифровое будущее
-              </span>
-            </h1>
-            <p className="mb-8 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-lg leading-relaxed text-foreground/90 duration-1000 delay-200 md:text-xl">
-              <span className="text-pretty">
-                Создаем современные веб-приложения и цифровые продукты, которые помогают бизнесу расти и развиваться.
-              </span>
-            </p>
-            <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
-              <MagneticButton
-                size="lg"
-                variant="primary"
-                onClick={() => scrollToSection(4)}
-              >
-                Обсудить проект
-              </MagneticButton>
-              <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(2)}>
-                Наши услуги
-              </MagneticButton>
+        <section className="flex min-h-screen w-screen shrink-0 items-center px-6 pt-24 pb-12 md:px-12 lg:px-16">
+          <div className="mx-auto w-full max-w-7xl">
+            <div className="grid gap-12 md:grid-cols-2 md:gap-16 items-center">
+              {/* Left */}
+              <div>
+                <div className="mb-5 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-[#c9941a]/30 bg-[#c9941a]/10 px-4 py-1.5 backdrop-blur-md duration-700">
+                  <p className="font-mono text-xs text-[#c9941a]">Fintech SaaS · Управление портфелем</p>
+                </div>
+                <h1 className="mb-6 animate-in fade-in slide-in-from-bottom-8 font-sans text-5xl font-light leading-[1.05] tracking-tight text-foreground duration-1000 md:text-6xl lg:text-7xl">
+                  Ваш портфель
+                  <br />
+                  <span className="text-[#c9941a]">теряет деньги.</span>
+                  <br />
+                  <span className="text-foreground/50 text-4xl md:text-5xl lg:text-6xl">Каждый день.</span>
+                </h1>
+                <p className="mb-8 max-w-lg animate-in fade-in slide-in-from-bottom-4 text-base leading-relaxed text-foreground/80 duration-1000 delay-200 md:text-lg">
+                  OnePlaceCollection — платформа для анализа и управления портфелем исполнительных производств. Показывает, где теряется эффективность, и помогает её вернуть.
+                </p>
+                <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-4 duration-1000 delay-300 sm:flex-row sm:items-center">
+                  <MagneticButton
+                    size="lg"
+                    variant="primary"
+                    onClick={() => scrollToSection(4)}
+                  >
+                    Проверить портфель
+                  </MagneticButton>
+                  <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(4)}>
+                    Получить аудит
+                  </MagneticButton>
+                </div>
+              </div>
+
+              {/* Right — Псевдо-дашборд */}
+              <div className="animate-in fade-in duration-1000 delay-500">
+                <div className="rounded-2xl border border-foreground/10 bg-foreground/5 backdrop-blur-md p-5 space-y-4">
+                  {/* Header */}
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs text-foreground/50">OPC · Аналитика портфеля</span>
+                    <span className="flex items-center gap-1.5 font-mono text-xs text-green-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                      live
+                    </span>
+                  </div>
+
+                  {/* Segmentation A/B/C */}
+                  <div className="space-y-2">
+                    <p className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest">Сегментация портфеля</p>
+                    <div className="flex gap-1 h-3 rounded-full overflow-hidden">
+                      <div className="bg-green-500/80 transition-all duration-1000" style={{ width: "18%" }} />
+                      <div className="bg-[#c9941a]/80 transition-all duration-1000" style={{ width: "31%" }} />
+                      <div className="bg-red-500/60 transition-all duration-1000" style={{ width: "51%" }} />
+                    </div>
+                    <div className="flex gap-4">
+                      <span className="font-mono text-xs text-green-400">A — 18%</span>
+                      <span className="font-mono text-xs text-[#c9941a]">B — 31%</span>
+                      <span className="font-mono text-xs text-red-400">C — 51%</span>
+                    </div>
+                  </div>
+
+                  {/* Потери / Потенциал */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-3">
+                      <p className="font-mono text-[10px] text-red-400/70 uppercase tracking-widest mb-1">Потери сейчас</p>
+                      <p className="font-sans text-2xl font-light text-red-400">
+                        {lossCount}<span className="text-base">%</span>
+                      </p>
+                      <p className="font-mono text-[10px] text-foreground/40">от портфеля</p>
+                    </div>
+                    <div className="rounded-xl bg-green-500/10 border border-green-500/20 p-3">
+                      <p className="font-mono text-[10px] text-green-400/70 uppercase tracking-widest mb-1">Потенциал роста</p>
+                      <p className="font-sans text-2xl font-light text-green-400">
+                        +{growthCount}<span className="text-base">М ₽</span>
+                      </p>
+                      <p className="font-mono text-[10px] text-foreground/40">в год</p>
+                    </div>
+                  </div>
+
+                  {/* Распределение ресурсов */}
+                  <div className="space-y-2">
+                    <p className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest">Распределение ресурсов</p>
+                    {[
+                      { label: "Сегмент A (приоритет)", value: 72, color: "bg-green-500/70" },
+                      { label: "Сегмент B (резерв)", value: 45, color: "bg-[#c9941a]/70" },
+                      { label: "Сегмент C (аутсорс)", value: 18, color: "bg-red-500/50" },
+                    ].map((item) => (
+                      <div key={item.label} className="flex items-center gap-2">
+                        <span className="font-mono text-[9px] text-foreground/40 w-32 shrink-0">{item.label}</span>
+                        <div className="flex-1 h-1.5 rounded-full bg-foreground/10">
+                          <div className={`h-full rounded-full ${item.color} transition-all duration-1000`} style={{ width: `${item.value}%` }} />
+                        </div>
+                        <span className="font-mono text-[9px] text-foreground/50">{item.value}%</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -291,7 +381,7 @@ export default function Index() {
             <div className="flex items-center gap-2">
               <p className="font-mono text-xs text-foreground/80">Листайте вправо</p>
               <div className="flex h-6 w-12 items-center justify-center rounded-full border border-foreground/20 bg-foreground/15 backdrop-blur-md">
-                <div className="h-2 w-2 animate-pulse rounded-full bg-foreground/80" />
+                <div className="h-2 w-2 animate-pulse rounded-full bg-[#c9941a]" />
               </div>
             </div>
           </div>
