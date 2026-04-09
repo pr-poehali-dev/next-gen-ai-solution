@@ -69,7 +69,7 @@ export function ContactSection() {
 
           {/* Right — Form */}
           <div className={`flex flex-col justify-center transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"}`} style={{ transitionDelay: "150ms" }}>
-            <div className="rounded-2xl border border-black/8 bg-white shadow-sm p-6 md:p-8">
+            <div className="rounded-2xl border border-border bg-white shadow-xl shadow-black/6 p-6 md:p-8">
               <form onSubmit={handleSubmit} className="space-y-4">
                 {[
                   { key: "name", label: "Имя и фамилия", placeholder: "Иван Петров", type: "text" },
@@ -84,7 +84,7 @@ export function ContactSection() {
                       value={formData[field.key as keyof typeof formData]}
                       onChange={(e) => setFormData({ ...formData, [field.key]: e.target.value })}
                       required={field.key === "name" || field.key === "phone"}
-                      className="w-full rounded-xl border border-black/10 bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/30 focus:border-[#FFD600]/50 focus:outline-none focus:ring-2 focus:ring-[#FFD600]/20 transition-all"
+                      className="w-full rounded-xl border border-border bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-foreground/40 focus:border-[#FFD600]/60 focus:outline-none focus:ring-2 focus:ring-[#FFD600]/20 transition-all"
                       placeholder={field.placeholder}
                     />
                   </div>

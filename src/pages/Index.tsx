@@ -112,14 +112,14 @@ export default function Index() {
     <main className="relative h-screen w-full overflow-hidden bg-background">
       <CustomCursor />
 
-      {/* Subtle background accent */}
+      {/* Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-[#FFD600]/8 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#FFD600]/5 blur-3xl" />
+        <div className="absolute top-[-100px] right-[-100px] w-[700px] h-[700px] rounded-full bg-[#FFD600]/12 blur-3xl" />
+        <div className="absolute bottom-[-80px] left-[-80px] w-[500px] h-[500px] rounded-full bg-blue-500/4 blur-3xl" />
       </div>
 
       {/* Nav */}
-      <nav className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-5 md:px-12 border-b border-black/6 bg-white/80 backdrop-blur-md">
+      <nav className="fixed left-0 right-0 top-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 border-b border-border bg-white/90 backdrop-blur-md shadow-sm">
         <button onClick={() => scrollToSection(0)} className="flex items-center gap-3 transition-transform hover:scale-105">
           <img
             src="https://cdn.poehali.dev/projects/a4c6c3a9-5898-4bcd-9cf1-d79afacd9921/bucket/ae31cd01-2f18-4677-bbe2-03d4a1cb3389.png"
@@ -179,7 +179,7 @@ export default function Index() {
                   <span className="text-foreground/25">.</span>
                 </h1>
 
-                <p className="mb-8 max-w-lg text-base leading-relaxed text-foreground/60 md:text-lg">
+                <p className="mb-8 max-w-lg text-base leading-relaxed text-foreground/65 md:text-lg">
                   OnePlaceCollection — платформа аналитики для банков, МФО и коллекторских агентств. Показывает, где теряется эффективность, и помогает её вернуть.
                 </p>
 
@@ -208,8 +208,8 @@ export default function Index() {
 
               {/* Right — Dashboard */}
               <div className="animate-in fade-in duration-1000 delay-300">
-                <div className="rounded-2xl border border-black/8 bg-white shadow-xl shadow-black/5 p-5 space-y-4">
-                  <div className="flex items-center justify-between pb-2 border-b border-black/6">
+                <div className="rounded-2xl border border-border bg-white shadow-2xl shadow-black/8 p-5 space-y-4">
+                  <div className="flex items-center justify-between pb-2 border-b border-border">
                     <span className="font-mono text-xs text-foreground/40">OPC · Аналитика портфеля</span>
                     <span className="flex items-center gap-1.5 font-mono text-xs text-emerald-600">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -260,7 +260,7 @@ export default function Index() {
                     ].map((item) => (
                       <div key={item.label} className="flex items-center gap-2">
                         <span className="font-mono text-[9px] text-foreground/40 w-20 shrink-0">{item.label}</span>
-                        <div className="flex-1 h-1.5 rounded-full bg-black/6">
+                        <div className="flex-1 h-1.5 rounded-full bg-border">
                           <div className={`h-full rounded-full ${item.color}`} style={{ width: `${item.value}%` }} />
                         </div>
                         <span className="font-mono text-[9px] text-foreground/40">{item.value}%</span>

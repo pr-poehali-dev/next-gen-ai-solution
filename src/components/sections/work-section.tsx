@@ -23,7 +23,7 @@ export function WorkSection() {
           </h2>
         </div>
 
-        <div className="divide-y divide-black/6">
+        <div className="divide-y divide-border">
           {items.map((item, i) => (
             <div
               key={i}
@@ -48,7 +48,7 @@ export function WorkSection() {
           ))}
         </div>
 
-        <div className={`mt-8 p-4 rounded-xl bg-[#FFD600]/10 border border-[#FFD600]/20 transition-all duration-700 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <div className={`mt-8 p-4 rounded-xl bg-[#FFD600]/15 border border-[#FFD600]/30 transition-all duration-700 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <p className="font-mono text-sm text-foreground/60">
             <span className="font-semibold text-foreground">Итого: </span>
             до <span className="text-red-500 font-semibold">−101% неэффективности</span> — проблема не в должниках, а в управлении.

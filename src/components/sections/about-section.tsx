@@ -59,13 +59,13 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
             ].map((stat, i) => (
               <div
                 key={i}
-                className={`flex items-center gap-5 p-5 rounded-2xl border border-black/6 bg-white shadow-sm transition-all duration-700 ${
+                className={`flex items-center gap-5 p-5 rounded-2xl border border-border bg-white shadow-md shadow-black/5 transition-all duration-700 ${
                   isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"
                 }`}
                 style={{ transitionDelay: `${300 + i * 120}ms` }}
               >
                 <div className="text-3xl font-semibold text-foreground md:text-4xl shrink-0 w-24">{stat.value}</div>
-                <div className="border-l border-black/8 pl-5">
+                <div className="border-l border-border pl-5">
                   <div className="font-sans text-sm font-medium text-foreground">{stat.label}</div>
                   <div className="font-mono text-xs text-foreground/40 mt-0.5">{stat.sub}</div>
                 </div>

@@ -50,7 +50,7 @@ export function ServicesSection() {
         <div className="grid gap-8 md:grid-cols-2 md:gap-12">
           {/* Inputs */}
           <div className={`space-y-6 transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`} style={{ transitionDelay: "150ms" }}>
-            <div className="p-5 rounded-2xl border border-black/8 bg-white shadow-sm">
+            <div className="p-5 rounded-2xl border border-border bg-white shadow-md shadow-black/5">
               <div className="flex items-center justify-between mb-3">
                 <label className="font-mono text-xs text-foreground/50 uppercase tracking-widest">Портфель</label>
                 <span className="font-sans text-base font-semibold text-foreground">{portfolio.toLocaleString("ru-RU")} млн ₽</span>
@@ -66,7 +66,7 @@ export function ServicesSection() {
               </div>
             </div>
 
-            <div className="p-5 rounded-2xl border border-black/8 bg-white shadow-sm">
+            <div className="p-5 rounded-2xl border border-border bg-white shadow-md shadow-black/5">
               <div className="flex items-center justify-between mb-3">
                 <label className="font-mono text-xs text-foreground/50 uppercase tracking-widest">Взыскание сейчас</label>
                 <span className="font-sans text-base font-semibold text-foreground">{recovery}%</span>
@@ -82,7 +82,7 @@ export function ServicesSection() {
               </div>
             </div>
 
-            <div className="p-4 rounded-xl border border-[#FFD600]/20 bg-[#FFD600]/5">
+            <div className="p-4 rounded-xl border border-[#FFD600]/30 bg-[#FFD600]/10">
               <p className="font-mono text-[10px] text-foreground/40 uppercase tracking-widest mb-2">Что даёт платформа</p>
               <ul className="space-y-1.5">
                 {[
@@ -102,7 +102,7 @@ export function ServicesSection() {
 
           {/* Results */}
           <div className={`flex flex-col gap-4 transition-all duration-700 ${isVisible ? "translate-x-0 opacity-100" : "translate-x-12 opacity-0"}`} style={{ transitionDelay: "300ms" }}>
-            <div className="flex-1 rounded-2xl border border-red-100 bg-red-50 p-6 flex flex-col justify-between">
+            <div className="flex-1 rounded-2xl border border-red-200 bg-red-50 p-6 flex flex-col justify-between shadow-sm">
               <div>
                 <p className="font-mono text-xs text-red-400 uppercase tracking-widest mb-3">Теряете ежегодно</p>
                 <p className="font-sans text-5xl font-semibold text-red-500 md:text-6xl">
@@ -113,7 +113,7 @@ export function ServicesSection() {
               <p className="font-mono text-xs text-foreground/40 mt-4">остаётся в невзысканном портфеле из-за плохого управления</p>
             </div>
 
-            <div className="flex-1 rounded-2xl border border-emerald-100 bg-emerald-50 p-6 flex flex-col justify-between">
+            <div className="flex-1 rounded-2xl border border-emerald-200 bg-emerald-50 p-6 flex flex-col justify-between shadow-sm">
               <div>
                 <p className="font-mono text-xs text-emerald-600 uppercase tracking-widest mb-3">Потенциал роста</p>
                 <p className="font-sans text-5xl font-semibold text-emerald-600 md:text-6xl">
